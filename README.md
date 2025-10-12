@@ -24,4 +24,3 @@ yarn dev
 ```
 
 dev сервер открывается в браузере [http://localhost:3000](http://localhost:3000)
-

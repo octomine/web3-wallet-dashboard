@@ -1,8 +1,5 @@
-interface IBaseResponse {
+export interface IEtherscanResponse<T> {
   status: string;
   message: string;
-}
-
-export interface IGetBalanceResponse extends IBaseResponse {
-  result: string;
+  result: T;
 }

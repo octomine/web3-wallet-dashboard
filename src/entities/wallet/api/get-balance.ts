@@ -1,9 +1,9 @@
 import { apiClient } from "@/shared/api/api-client";
-import { IGetBalanceResponse } from "./types";
+import { IEtherscanResponse } from "./types";
 
 export const getBalance = async (address: string): Promise<string> => {
   try {
-    const response = await apiClient.get<IGetBalanceResponse>('/', {
+    const response = await apiClient.get<IEtherscanResponse<string>>('/', {
       params: {
         chainid: '1',
         module: 'account',
@@ -12,7 +12,7 @@ export const getBalance = async (address: string): Promise<string> => {
         address,
         apikey: process.env.NEXT_PUBLIC_ETHERSCAN_API_KEY,
       }
-    });
+    })
     return response.data.result
   } catch (error) {
     console.log(error)

@@ -2,12 +2,16 @@
 
 import { QueryClientProvider } from "@tanstack/react-query"
 import { FC, PropsWithChildren } from "react"
+import { NextIntlClientProvider } from "next-intl"
 import { queryClient } from "@/shared/api/query-client"
+import messages from "../../../messages/ru.json"
 
 const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <NextIntlClientProvider locale="ru" messages={messages}>
+        {children}
+      </NextIntlClientProvider>
     </QueryClientProvider>
   )
 }

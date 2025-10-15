@@ -1,5 +1,5 @@
 import { apiClient } from "@/shared/api/api-client";
-import { IEtherscanResponse } from "./types";
+import { IEtherscanResponse } from "../../../shared/api/types";
 
 export const getBalance = async (address: string): Promise<string> => {
   try {

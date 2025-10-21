@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import { Input } from '../Input'
@@ -19,14 +19,25 @@ describe('Input', () => {
     expect(el).toBeInTheDocument()
   })
 
-  it('should call onChange', () => {
+  it('should call onChange', async () => {
     const onChange = jest.fn()
-    render(<Input value='test value' onChange={onChange} />)
+    render(<Input value='' onChange={onChange} />)
     const el = screen.getByTestId('input-control')
-    userEvent.type(el, 'test value');
+    await userEvent.type(el, 'test');
 
-    waitFor(() => {
-      expect(onChange).toHaveBeenCalledTimes(1)
+    await waitFor(() => {
+      expect(onChange).toHaveBeenCalledTimes(4)
+    })
+  })
+
+  it('should call onEnter on enter key up', async () => {
+    const onEnter = jest.fn()
+    render(<Input value='test value' onChange={() => { }} onEnter={onEnter} />)
+    const el = screen.getByTestId('input-control')
+
+    fireEvent.keyUp(el, { key: 'Enter', code: 'Enter', keyCode: 13, charCode: 13 })
+    await waitFor(() => {
+      expect(onEnter).toHaveBeenCalled()
     })
   })
 

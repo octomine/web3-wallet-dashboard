@@ -1,5 +1,6 @@
-import { apiClient } from "@/shared/api/api-client";
-import { IEtherscanResponse } from "../../../shared/api/types";
+import { ETHERSCAN_CONFIG } from "@/shared/config/etherscan.config";
+import { apiClient } from "@shared/api/api-client";
+import { IEtherscanResponse } from "@shared/api/types";
 
 export const getBalance = async (address: string): Promise<string> => {
   try {
@@ -10,7 +11,7 @@ export const getBalance = async (address: string): Promise<string> => {
         tag: 'latest',
         action: 'balance',
         address,
-        apikey: process.env.NEXT_PUBLIC_ETHERSCAN_API_KEY,
+        apikey: ETHERSCAN_CONFIG.apikey,
       }
     })
     return response.data.result

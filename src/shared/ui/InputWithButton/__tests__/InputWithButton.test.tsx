@@ -37,7 +37,7 @@ describe('InputWithButton', () => {
     })
   })
 
-  it('should submit value on click', async () => {
+  it('should submit value on click button', async () => {
     const onSubmit = jest.fn()
     render(<InputWithButton onSubmit={onSubmit} />)
 
@@ -55,7 +55,7 @@ describe('InputWithButton', () => {
     })
   })
 
-  it('should submit value on enter', async () => {
+  it('should submit value on press enter key', async () => {
     const onSubmit = jest.fn()
     render(<InputWithButton onSubmit={onSubmit} />)
 

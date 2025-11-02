@@ -1,17 +1,17 @@
 'use client'
 
-import { ChangeEvent, FC, useState } from "react";
+import { FC } from "react";
 import { useTranslations } from "next-intl";
-import { Input } from "@shared/ui/Input";
+import { InputWithButton } from "@/shared/ui/InputWithButton";
+import { useWalletStore } from "@/entities/wallet/model/wallet-store";
 
 export const AddressInput: FC = () => {
   const t = useTranslations()
-  const [value, setValue] = useState('');
+  const { setAddress } = useWalletStore()
 
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target
-    setValue(value)
+  const handleSubmit = (address: string) => {
+    setAddress(address);
   }
 
-  return <Input value={value} onChange={handleOnChange} placeholder={t('enterAddress')}></Input>
+  return <InputWithButton onSubmit={handleSubmit} placeholder={t('enterAddress')} />
 }
